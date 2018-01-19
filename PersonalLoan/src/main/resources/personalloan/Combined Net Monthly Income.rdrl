@@ -1,0 +1,24 @@
+package personalloan;
+
+import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Double;
+
+rule "Combined Net Monthly Income"
+	dialect "mvel"
+	no-loop true
+	lock-on-active false
+	salience 2000
+	when
+		$applicant : Applicant( applicant_income != null , applicant_combined_net_monthly_income == null )
+		$totalincome : Double( ) from accumulate ( $coapplicant : Coapplicant( coapplicant_income != null ),
+			init( Double totalincome=0.0; ),
+			action( totalincome+=$coapplicant.coapplicant_income; ),
+			result( totalincome )
+) 
+	then
+		modify( $applicant ) {
+				setApplicant_combined_net_monthly_income( $applicant.applicant_income+Math.min(0.5*$applicant.applicant_income,$totalincome) ), 
+				setCoapplicant_net_monthly_income( $totalincome )
+		}
+end

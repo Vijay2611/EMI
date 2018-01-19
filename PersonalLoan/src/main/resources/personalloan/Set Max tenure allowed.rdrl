@@ -1,0 +1,15 @@
+package personalloan;
+
+import java.lang.Number;
+
+rule "Set Max tenure allowed"
+	dialect "mvel"
+	lock-on-active false
+	when
+		$loan : Loan( loan_max_tenure_allowed == null )
+		$applicant : Applicant( applicant_age != null , applicant_max_age_allowed != null )
+	then
+		modify( $loan ) {
+				setLoan_max_tenure_allowed( Math.min(Math.max(($applicant.applicant_max_age_allowed-$applicant.applicant_age).intValue(),0),5) )
+		}
+end

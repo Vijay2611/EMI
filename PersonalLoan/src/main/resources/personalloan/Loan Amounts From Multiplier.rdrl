@@ -1,0 +1,15 @@
+package personalloan;
+
+import java.lang.Number;
+
+rule "Loan Amounts From Multiplier"
+	dialect "mvel"
+	lock-on-active false
+	when
+		$applicant : Applicant( applicant_combined_net_monthly_income != null , loan_multiplier_list != null )
+		$loan : Loan( loan_amount_from_multiplier == null , loan_system_approved_tenure != null )
+	then
+		modify( $loan ) {
+				setLoan_amount_from_multiplier( $applicant.loan_multiplier_list, $loan.loan_system_approved_tenure, $applicant.applicant_combined_net_monthly_income )
+		}
+end

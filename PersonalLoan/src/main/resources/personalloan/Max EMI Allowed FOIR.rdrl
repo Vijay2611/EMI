@@ -1,0 +1,15 @@
+package personalloan;
+
+import java.lang.Number;
+
+rule "Max EMI Allowed FOIR"
+	dialect "mvel"
+	lock-on-active false
+	when
+		$applicant : Applicant( applicant_net_servicibility != null , coapplicant_net_servicibility != null )
+		$loan : Loan( loan_max_emi_allowed_foir == null )
+	then
+		modify( $loan ) {
+				setLoan_max_emi_allowed_foir( ($applicant.applicant_net_servicibility+$applicant.coapplicant_net_servicibility).doubleValue() )
+		}
+end

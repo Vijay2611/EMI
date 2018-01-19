@@ -1,0 +1,16 @@
+package personalloan;
+
+import java.lang.Number;
+
+rule "Applicant Age at Maturity"
+	dialect "mvel"
+	salience 10
+	lock-on-active false
+	when
+		$applicant : Applicant( applicant_age != null , applicant_age_at_maturity == null )
+		$loan : Loan( loan_system_approved_tenure != null )
+	then
+		modify( $applicant ) {
+				setApplicant_age_at_maturity( $applicant.applicant_age+$loan.loan_system_approved_tenure )
+		}
+end
