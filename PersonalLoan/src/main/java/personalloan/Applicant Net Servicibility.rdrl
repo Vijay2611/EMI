@@ -1,0 +1,16 @@
+package personalloan;
+
+import java.lang.Number;
+
+rule "Applicant Net Servicibility"
+	dialect "mvel"
+	no-loop true
+	lock-on-active false
+	salience 400
+	when
+		$applicant : Applicant( applicant_foir != null , applicant_income != null , applicant_cibil_total_obligations_considered != null , applicant_net_servicibility == null )
+	then
+		modify( $applicant ) {
+				setApplicant_net_servicibility( $applicant.applicant_foir*$applicant.applicant_income-$applicant.applicant_cibil_total_obligations_considered )
+		}
+end

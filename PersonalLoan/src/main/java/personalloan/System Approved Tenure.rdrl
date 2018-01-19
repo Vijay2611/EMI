@@ -1,0 +1,14 @@
+package personalloan;
+
+import java.lang.Number;
+
+rule "System Approved Tenure"
+	dialect "mvel"
+	lock-on-active false
+	when
+		$loan : Loan( loan_customer_applied_tenure != null , loan_system_approved_tenure == null , loan_max_tenure_allowed != null )
+	then
+		modify( $loan ) {
+				setLoan_system_approved_tenure( Math.min($loan.loan_max_tenure_allowed,$loan.loan_customer_applied_tenure) )
+		}
+end

@@ -1,0 +1,14 @@
+package personalloan;
+
+import java.lang.Number;
+
+rule "ABB EMI Ratio"
+	dialect "mvel"
+	when
+		$loan : Loan( loan_customer_applied_emi != null , loan_abb_emi_ratio == null )
+		$applicant : Applicant( applicant_abb != null )
+	then
+		modify( $loan ) {
+				setLoan_abb_emi_ratio( $applicant.applicant_abb/$loan.loan_customer_applied_emi )
+		}
+end
