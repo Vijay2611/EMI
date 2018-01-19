@@ -4,7 +4,6 @@ import java.lang.Number;
 
 rule "ABB EMI Ratio"
 	dialect "mvel"
-	lock-on-active false
 	when
 		$loan : Loan( loan_customer_applied_emi != null , loan_abb_emi_ratio == null )
 		$applicant : Applicant( applicant_abb != null )

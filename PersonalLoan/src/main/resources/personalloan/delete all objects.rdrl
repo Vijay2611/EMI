@@ -12,5 +12,4 @@ rule "delete all objects"
 	then
 		retract( $applicant );
 		retract( $loan );
-		System.out.println("objects deleted");
 end

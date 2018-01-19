@@ -312,8 +312,6 @@
           <isBound>true</isBound>
         </org.drools.workbench.models.datamodel.rule.ActionInsertFact>
         <org.drools.workbench.models.datamodel.rule.FreeFormLine>
-          <text>System.out.println(&quot;max age called&quot;);
-retract($Maxageappvar);</text>
         </org.drools.workbench.models.datamodel.rule.FreeFormLine>
       </definition>
       <childColumns>

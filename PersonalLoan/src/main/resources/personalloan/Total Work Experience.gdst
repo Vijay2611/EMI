@@ -165,7 +165,6 @@
           <isBound>true</isBound>
         </org.drools.workbench.models.datamodel.rule.ActionInsertFact>
         <org.drools.workbench.models.datamodel.rule.FreeFormLine>
-          <text>retract($Totalworkexvar);</text>
         </org.drools.workbench.models.datamodel.rule.FreeFormLine>
       </definition>
       <childColumns>

@@ -18,5 +18,4 @@ rule "Coapplicant Net Servicibility"
 				setCoapplicant_net_servicibility( Math.min(0.5*$applicant.applicant_income,($applicant.coapplicant_foir*$applicant.coapplicant_net_monthly_income-$totalobligations)) ), 
 				setCoapplicant_cibil_total_obligations_considered( $totalobligations )
 		}
-		System.out.println("coapplicant net servicibility calculated");
 end

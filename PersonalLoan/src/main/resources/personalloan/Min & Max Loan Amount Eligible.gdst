@@ -240,7 +240,6 @@
           <isBound>true</isBound>
         </org.drools.workbench.models.datamodel.rule.ActionInsertFact>
         <org.drools.workbench.models.datamodel.rule.FreeFormLine>
-          <text>retract($minmaxvar);</text>
         </org.drools.workbench.models.datamodel.rule.FreeFormLine>
       </definition>
       <childColumns>

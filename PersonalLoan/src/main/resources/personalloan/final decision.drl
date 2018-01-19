@@ -12,7 +12,6 @@ rule "1 Final Decision"
 		not (RuleResults( system_Decision in ( 2,3 ))) 
 	then
 		$finalresult.setApp_xml_tu_status_id( 1 );
-		System.out.println("final decision rule Fired approved");
 end
 
 //from row number: 2
@@ -27,7 +26,6 @@ rule "2 Final Decision"
 		not (RuleResults( system_Decision in ( 2 ))) 
 	then
 		$finalresult.setApp_xml_tu_status_id( 3 );
-	    System.out.println("final decision rule refered");
 
 end
 
@@ -42,7 +40,6 @@ rule "3 Final Decision"
 		exists (RuleResults( system_Decision == 2 )) 
 	then
 		$finalresult.setApp_xml_tu_status_id( 2 );
-	    System.out.println("final decision rule Fired rejected");
 
 end
 

@@ -21,5 +21,4 @@ rule "Combined Net Monthly Income"
 				setApplicant_combined_net_monthly_income( $applicant.applicant_income+Math.min(0.5*$applicant.applicant_income,$totalincome) ), 
 				setCoapplicant_net_monthly_income( $totalincome )
 		}
-		System.out.println("combined net monthly income calculated");
 end
