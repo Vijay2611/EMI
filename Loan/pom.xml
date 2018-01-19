@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>Loan</groupId>
-  <artifactId>PersonalLoan</artifactId>
+  <artifactId>personalloan</artifactId>
   <name>Kotak Personal Loan</name>
   <version>0.0.1</version>
   <repositories>
