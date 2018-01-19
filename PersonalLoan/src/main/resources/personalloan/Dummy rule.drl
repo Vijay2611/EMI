@@ -1,0 +1,10 @@
+package personalloan
+
+rule 'Dummy rule'
+
+when
+  //conditions
+then
+  //actions
+
+end
