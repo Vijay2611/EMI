@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>PersonalLoan</groupId>
   <artifactId>personalloan</artifactId>
-  <version>0.0.1</version>
+  <version>1.0.0</version>
   <repositories>
     <repository>
       <id>guvnor-m2-repo</id>
