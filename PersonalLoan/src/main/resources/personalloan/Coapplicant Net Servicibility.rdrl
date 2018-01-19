@@ -1,0 +1,22 @@
+package personalloan;
+
+import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Double;
+
+rule "Coapplicant Net Servicibility"
+	dialect "mvel"
+	salience 400
+	no-loop true
+	lock-on-active false
+	when
+		$applicant : Applicant( applicant_income != null , coapplicant_net_servicibility == null , coapplicant_net_monthly_income != null , coapplicant_foir != null )
+		$totalobligations : Double( ) from accumulate ( $coapplicant : Coapplicant( $cibiltotalobligations : coapplicant_cibil_total_obligations_considered != null ),
+			sum($cibiltotalobligations)) 
+	then
+		modify( $applicant ) {
+				setCoapplicant_net_servicibility( Math.min(0.5*$applicant.applicant_income,($applicant.coapplicant_foir*$applicant.coapplicant_net_monthly_income-$totalobligations)) ), 
+				setCoapplicant_cibil_total_obligations_considered( $totalobligations )
+		}
+		System.out.println("coapplicant net servicibility calculated");
+end

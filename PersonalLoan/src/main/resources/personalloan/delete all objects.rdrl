@@ -1,0 +1,16 @@
+package personalloan;
+
+import java.lang.Number;
+
+rule "delete all objects"
+	dialect "mvel"
+	salience -999999999
+	enabled false
+	when
+		$applicant : Applicant( )
+		$loan : Loan( )
+	then
+		retract( $applicant );
+		retract( $loan );
+		System.out.println("objects deleted");
+end

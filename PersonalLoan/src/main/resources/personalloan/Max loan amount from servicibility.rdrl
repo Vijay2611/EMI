@@ -1,0 +1,16 @@
+package personalloan;
+
+import java.lang.Number;
+import java.lang.Double;
+import java.util.List;
+
+rule "Max loan amount from servicibility"
+	dialect "mvel"
+	lock-on-active false
+	when
+		$loan : Loan( loan_amount_from_servicibility != null , loan_max_tenure_amount_from_servicibility == null , loan_amount_from_servicibility.size() >= $loan.loan_system_approved_tenure , loan_amount_from_servicibility.size() >= 1 , loan_system_approved_tenure >= 1 )
+	then
+		modify( $loan ) {
+				setLoan_max_tenure_amount_from_servicibility( $loan.loan_amount_from_servicibility.get($loan.loan_system_approved_tenure-1) )
+		}
+end

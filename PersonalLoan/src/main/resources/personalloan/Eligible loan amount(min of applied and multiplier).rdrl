@@ -1,0 +1,14 @@
+package personalloan;
+
+import java.lang.Number;
+
+rule "Eligible loan amount(min of applied and multiplier)"
+	dialect "mvel"
+	lock-on-active false
+	when
+		$loan : Loan( loan_system_eligible_loan_amount == null , loan_max_tenure_amount_from_multiplier != null , loan_customer_applied_amount != null )
+	then
+		modify( $loan ) {
+				setLoan_system_eligible_loan_amount( Math.min($loan.loan_customer_applied_amount,$loan.loan_max_tenure_amount_from_multiplier) )
+		}
+end

@@ -1,0 +1,14 @@
+package personalloan;
+
+import java.lang.Number;
+
+rule "System Approved Loan Amount"
+	dialect "mvel"
+	lock-on-active false
+	when
+		$loan : Loan( loan_amount_from_product_cap != null , loan_max_tenure_amount_from_multiplier != null , loan_max_tenure_amount_from_servicibility != null , loan_system_approved_amount == null )
+	then
+		modify( $loan ) {
+				setLoan_system_approved_amount( Math.min(Math.min($loan.loan_max_tenure_amount_from_multiplier,$loan.loan_max_tenure_amount_from_servicibility),$loan.loan_amount_from_product_cap) )
+		}
+end
